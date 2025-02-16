@@ -1,0 +1,49 @@
+name: React CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run tests
+        run: npm test -- --watchAll=false  # Ensures tests exit properly
+
+      - name: Build project
+        run: npm run build
+
+      # Optional Docker build and push if deploying to IBM Cloud
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true  # Change to true if pushing to Docker registry
+          tags: sakshi/ibm-react-app:latest
+
+      # Example IBM Cloud Deployment step
+      - name: Deploy to IBM Cloud
+        run: |
+          ibmcloud login --apikey ${{ secrets.IBM_CLOUD_API_KEY }} -r us-south
+          ibmcloud cr login
+          ibmcloud cr image-push sakshi/ibm-react-app:latest
