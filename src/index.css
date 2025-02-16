@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navbar-brand {
+  font-family: Copperplate, "Copperplate Gothic Light", fantasy;
+}
+
+.vr {
+  height: 30px;
+}
+
+.navigation {
+  background-color: #3D52A0;
+}
+
+.sitename {
+  font-family: Georgia, Times, "Times New Roman", serif;
+}
+
+
+
+
